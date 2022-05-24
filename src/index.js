@@ -6,19 +6,31 @@ import { makeServer } from "./server";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-
+import GadgetQuiz from "./pages/GadgetQuiz";
+import { QuizContext, QuizContextProvider } from "./reducers/quizReducer";
+import Rules from "./pages/Rules";
+import FilmQuiz from "./pages/FilmQuiz";
+import Results from "./pages/Results";
+import SportsQuiz from "./pages/SportsQuiz";
 // Call make Server
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+    <QuizContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/rules" element={<Rules />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/film-quiz" element={<FilmQuiz />} />
+          <Route path="/gadget-quiz" element={<GadgetQuiz />} />
+          <Route path="/sports-quiz" element={<SportsQuiz />} />
+        </Routes>
+      </BrowserRouter>
+    </QuizContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
