@@ -9,10 +9,11 @@ const QuizContextProvider = ({ children }) => {
     );
     if (getData.status === 200) {
       const convertedJSON = await getData.json();
-      const newArr = await convertedJSON.results.map((item) => {
+      const newArr = await convertedJSON.results.map((item, index) => {
         return {
           ...item,
           options: [...item.incorrect_answers, item.correct_answer],
+          _id: index + 1,
         };
       });
       dispatch({ type: "addquiz1Data", payload: { value: newArr } });
@@ -24,13 +25,30 @@ const QuizContextProvider = ({ children }) => {
     );
     if (getData.status === 200) {
       const convertedJSON = await getData.json();
-      const newArr = await convertedJSON.results.map((item) => {
+      const newArr = await convertedJSON.results.map((item, index) => {
         return {
           ...item,
           options: [...item.incorrect_answers, item.correct_answer],
+          _id: index + 1,
         };
       });
       dispatch({ type: "addFilmQuizData", payload: { value: newArr } });
+    }
+  };
+  const getSportsQuizData = async () => {
+    const getData = await fetch(
+      "https://opentdb.com/api.php?amount=6&category=21&difficulty=hard&type=multiple"
+    );
+    if (getData.status === 200) {
+      const convertedJSON = await getData.json();
+      const newArr = await convertedJSON.results.map((item, index) => {
+        return {
+          ...item,
+          options: [...item.incorrect_answers, item.correct_answer],
+          _id: index + 1,
+        };
+      });
+      dispatch({ type: "addSportsQuizData", payload: { value: newArr } });
     }
   };
   const reducerFunc = (state, action) => {
@@ -68,6 +86,8 @@ const QuizContextProvider = ({ children }) => {
   });
   useEffect(() => {
     getQuiz1Data();
+    getFilmQuizData();
+    getSportsQuizData();
   }, []);
   return (
     <QuizContext.Provider value={{ quizState, dispatch }}>

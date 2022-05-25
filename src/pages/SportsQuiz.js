@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { QuizContext } from "../reducers/quizReducer";
 
@@ -8,24 +8,7 @@ const SportsQuiz = () => {
   const { quizState, dispatch } = useContext(QuizContext);
   const [quizQuestion, setQuizQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const getSportsQuizData = async () => {
-    const getData = await fetch(
-      "https://opentdb.com/api.php?amount=6&category=21&difficulty=hard&type=multiple"
-    );
-    if (getData.status === 200) {
-      const convertedJSON = await getData.json();
-      const newArr = await convertedJSON.results.map((item) => {
-        return {
-          ...item,
-          options: [...item.incorrect_answers, item.correct_answer],
-        };
-      });
-      dispatch({ type: "addSportsQuizData", payload: { value: newArr } });
-    }
-  };
-  useEffect(() => {
-    getSportsQuizData();
-  }, []);
+  const location = useLocation();
   const nextQuestion = (item) => {
     setQuizQuestion((prev) => prev + 1);
     setAnswers((prev) => [...prev, item]);
@@ -33,7 +16,7 @@ const SportsQuiz = () => {
   useEffect(() => {
     dispatch({ type: "sportsQuizAnswers", payload: { value: answers } });
     if (quizQuestion === 5) {
-      navigate("/results");
+      navigate("/results", { state: location });
     }
   }, [quizQuestion]);
   console.log(quizState);
