@@ -8,7 +8,6 @@ const Results = () => {
   const location = useLocation();
   const fromPath = location.state.pathname;
   const navigate = useNavigate();
-  console.log(fromPath);
   const correct = quizState.gadgetQuizAnswers.filter((item1) =>
     quizState.quiz1Data.some((item2) => item1 === item2.correct_answer)
   );
@@ -64,60 +63,3 @@ const Results = () => {
 };
 
 export default Results;
-{
-  /* <section>
-  <main className="results-top-container">
-    <div>
-      {fromPath === "/suits-quiz" ? (
-        <h4>
-          correct answers {correct.length}/{data.length}
-        </h4>
-      ) : fromPath === "/startup-quiz" ? (
-        <h4>
-          Correct Answers {businessCorrectAnswers.length}/{businessData.length}
-        </h4>
-      ) : (
-        <h4>
-          Correct Answers {sportsCorrectAnswers.length}/{iplData.length}
-        </h4>
-      )}
-    </div>
-    <div>
-      <h4>
-        Points:
-        {fromPath === "/suits-quiz"
-          ? `${correct.length * 50}`
-          : fromPath === "/startup-quiz"
-          ? `${businessCorrectAnswers.length * 50}`
-          : `${sportsCorrectAnswers.length * 50}`}
-      </h4>
-    </div>
-  </main>
-  <DisplayResults
-    data={
-      fromPath === "/gadget-quiz"
-        ? quizState.quiz1Data
-        : fromPath === "/film-quiz"
-        ? quizState.filmQuizData
-        : quizState.sportsQuizData
-    }
-    suitsCorrectAnswers={correct}
-    businessCorrectAnswers={businessCorrectAnswers}
-    sportsCorrectAnswers={sportsCorrectAnswers}
-  />
-  <div className="btn-center">
-    <button
-      className="btn btn-primary-outline"
-      onClick={() =>
-        fromPath === "/gadget-quiz"
-          ? navigate("/gadget-quiz")
-          : fromPath === "film-quiz"
-          ? navigate("/film-quiz")
-          : navigate("/sports-quiz")
-      }
-    >
-      ReTake Test
-    </button>
-  </div>
-</section>; */
-}
