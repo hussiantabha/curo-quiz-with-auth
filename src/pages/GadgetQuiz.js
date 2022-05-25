@@ -7,9 +7,10 @@ const GadgetQuiz = () => {
   const { quizState, dispatch } = useContext(QuizContext);
   const [gadgetData, setGadgetData] = useState([]);
   const [quizQuestion, setQuizQuestion] = useState(0);
-  const [currentQuestion, setCurrentQuestion] = useState(
-    gadgetData[quizQuestion]
-  );
+  const location = useLocation();
+  // const [currentQuestion, setCurrentQuestion] = useState(
+  //   gadgetData[quizQuestion]
+  // );
   const [answers, setAnswers] = useState([]);
   const getQuizData = async () => {
     const getData = await fetch(
@@ -39,10 +40,10 @@ const GadgetQuiz = () => {
   useEffect(() => {
     dispatch({ type: "gadgetQuizAnswers", payload: { value: answers } });
     if (quizQuestion === 5) {
-      navigate("/results");
+      navigate("/results", { state: location });
     }
   }, [quizQuestion]);
-  console.log(quizState);
+  //console.log(quizState);
   return (
     <>
       <Navbar />

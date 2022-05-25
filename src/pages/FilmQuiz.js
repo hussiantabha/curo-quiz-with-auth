@@ -8,24 +8,7 @@ const FilmQuiz = () => {
   const { quizState, dispatch } = useContext(QuizContext);
   const [quizQuestion, setQuizQuestion] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const getFilmQuizData = async () => {
-    const getData = await fetch(
-      "https://opentdb.com/api.php?amount=6&category=11&difficulty=medium&type=multiple"
-    );
-    if (getData.status === 200) {
-      const convertedJSON = await getData.json();
-      const newArr = await convertedJSON.results.map((item) => {
-        return {
-          ...item,
-          options: [...item.incorrect_answers, item.correct_answer],
-        };
-      });
-      dispatch({ type: "addFilmQuizData", payload: { value: newArr } });
-    }
-  };
-  useEffect(() => {
-    getFilmQuizData();
-  }, []);
+  const location = useLocation();
   const nextQuestion = (item) => {
     setQuizQuestion((prev) => prev + 1);
     setAnswers((prev) => [...prev, item]);
@@ -33,11 +16,11 @@ const FilmQuiz = () => {
   useEffect(() => {
     dispatch({ type: "filmQuizAnswers", payload: { value: answers } });
     if (quizQuestion === 5) {
-      navigate("/results");
+      navigate("/results", { state: location });
     }
   }, [quizQuestion]);
 
-  console.log(quizState);
+  //console.log(quizState);
   return (
     <>
       <Navbar />

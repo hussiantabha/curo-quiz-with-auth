@@ -20,16 +20,19 @@
 .quiz-card-section-container {
   margin-top: 5rem;
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   column-gap: 3rem;
+  row-gap: 1.5rem;
 }
 .quiz-card-container {
   display: flex;
   flex-flow: column wrap;
-  border: 1px solid black;
+  border: 1px solid #e5e7eb;
   border-radius: 0.25rem;
   width: 320px;
+  height: auto;
 }
 .quiz-content-container {
   display: flex;
