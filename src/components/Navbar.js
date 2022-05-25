@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { QuizContext } from "../reducers/quizReducer";
 
 const Navbar = () => {
+  const { quizState, dispatch } = useContext(QuizContext);
+  const logout = () => {
+    sessionStorage.clear();
+    dispatch({ type: "userLoggedIn", payload: { value: false } });
+  };
   return (
     <nav className="nav">
       <div>
@@ -10,9 +16,18 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <button className="btn btn-primry">
+        {quizState.userLoggedIn ? (
+          <button className="btn btn-primary" onClick={logout}>
+            Logout
+          </button>
+        ) : (
+          <button className="btn btn-primry">
+            <Link to="/login">Login</Link>
+          </button>
+        )}
+        {/* <button className="btn btn-primry">
           <Link to="/login">Login</Link>
-        </button>
+        </button> */}
       </div>
     </nav>
   );

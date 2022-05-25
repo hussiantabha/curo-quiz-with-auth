@@ -71,6 +71,9 @@ const QuizContextProvider = ({ children }) => {
       case "sportsQuizAnswers": {
         return { ...state, sportsQuizAnswers: action.payload.value };
       }
+      case "userLoggedIn": {
+        return { ...state, userLoggedIn: action.payload.value };
+      }
       default: {
         return { ...state };
       }
@@ -83,11 +86,19 @@ const QuizContextProvider = ({ children }) => {
     filmQuizAnswers: [],
     sportsQuizData: [],
     sportsQuizAnswers: [],
+    userLoggedIn: false,
   });
   useEffect(() => {
     getQuiz1Data();
     getFilmQuizData();
     getSportsQuizData();
+    if (sessionStorage.getItem("token") === null) {
+      dispatch({ type: "userLoggedIn", payload: { value: false } });
+    } else if (sessionStorage.getItem("token") === "undefined") {
+      dispatch({ type: "userLoggedIn", payload: { value: false } });
+    } else {
+      dispatch({ type: "userLoggedIn", payload: { value: true } });
+    }
   }, []);
   return (
     <QuizContext.Provider value={{ quizState, dispatch }}>
