@@ -3,11 +3,10 @@ import Navbar from "./components/Navbar";
 import { Link, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { QuizContext } from "./reducers/quizReducer";
-
+import { SocialIcon } from "react-social-icons";
 function App() {
   const location = useLocation();
   const { quizState } = useContext(QuizContext);
-  console.log(quizState);
   return (
     <>
       <Navbar />
@@ -53,6 +52,26 @@ function App() {
           </Link>
         </div>
       </section>
+      <footer className="footer-quiz">
+        <p>Made for Neog by Hussain</p>
+        <div className="footer-icon-quiz-container">
+          <SocialIcon
+            url="https://twitter.com/hussain_tabha"
+            className="footer-icon-quiz"
+            style={{ width: "28px", height: "28px" }}
+          />
+          <SocialIcon
+            url="https://www.linkedin.com/in/hussain-tabha-329b081a1/"
+            className="footer-icon"
+            style={{ width: "28px", height: "28px" }}
+          />
+          <SocialIcon
+            url="https://github.com/hussiantabha"
+            className="footer-icon"
+            style={{ width: "28px", height: "28px" }}
+          />
+        </div>
+      </footer>
     </>
   );
 }
