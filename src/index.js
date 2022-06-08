@@ -12,6 +12,7 @@ import Rules from "./pages/Rules";
 import FilmQuiz from "./pages/FilmQuiz";
 import Results from "./pages/Results";
 import SportsQuiz from "./pages/SportsQuiz";
+import { AuthProvider } from "./reducers/Auth";
 // Call make Server
 makeServer();
 
@@ -23,7 +24,14 @@ ReactDOM.render(
           <Route path="/" element={<App />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/rules" element={<Rules />} />
+          <Route
+            path="/rules"
+            element={
+              <AuthProvider>
+                <Rules />
+              </AuthProvider>
+            }
+          />
           <Route path="/results" element={<Results />} />
           <Route path="/film-quiz" element={<FilmQuiz />} />
           <Route path="/gadget-quiz" element={<GadgetQuiz />} />

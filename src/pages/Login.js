@@ -3,12 +3,13 @@ import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { QuizContext } from "../reducers/quizReducer";
 
 const Login = () => {
   let location = useLocation();
   let navigate = useNavigate();
-  console.log(location);
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
+  const { quizState, dispatch } = useContext(QuizContext);
   const loginFunc = async () => {
     try {
       const postData = await fetch("/api/auth/login", {
@@ -51,12 +52,11 @@ const Login = () => {
           password: "test",
         }),
       });
-      console.log(postData);
       if (postData.status === 200) {
         const convertedJSON = await postData.json();
         sessionStorage.setItem("token", convertedJSON.encodedToken);
         setLoginInput({ email: "", password: "" });
-        //dispatch({ type: "userLoggedIn", payload: { value: true } });
+        dispatch({ type: "userLoggedIn", payload: { value: true } });
         navigate(location.state === null ? "/" : location.state.from.pathname);
       }
       if (postData.status === 404) {
