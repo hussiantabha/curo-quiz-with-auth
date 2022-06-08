@@ -24,7 +24,7 @@ const Results = () => {
         <div>
           {fromPath === "/film-quiz" ? (
             <h4>
-              correct answers {filmCorrectAnswers.length}/
+              Correct Answers {filmCorrectAnswers.length}/
               {quizState.filmQuizData.length - 1}
             </h4>
           ) : fromPath === "/gadget-quiz" ? (

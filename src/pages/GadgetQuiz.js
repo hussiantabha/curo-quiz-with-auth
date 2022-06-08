@@ -22,7 +22,6 @@ const GadgetQuiz = () => {
   return (
     <>
       <Navbar />
-      <button onClick={() => nextQuestion("hi")}>Next</button>
       <section className="quiz-question-modal">
         <div className="quiz-question-container">
           {quizState.quiz1Data.length === 0 ? (

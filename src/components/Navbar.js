@@ -17,17 +17,14 @@ const Navbar = () => {
       </div>
       <div>
         {quizState.userLoggedIn ? (
-          <button className="btn btn-primary" onClick={logout}>
+          <button className="btn btn-primary btn-nav" onClick={logout}>
             Logout
           </button>
         ) : (
-          <button className="btn btn-primry">
+          <button className="btn btn-primary btn-nav">
             <Link to="/login">Login</Link>
           </button>
         )}
-        {/* <button className="btn btn-primry">
-          <Link to="/login">Login</Link>
-        </button> */}
       </div>
     </nav>
   );
