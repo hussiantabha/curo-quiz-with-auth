@@ -20,7 +20,6 @@ const FilmQuiz = () => {
     }
   }, [quizQuestion]);
 
-  //console.log(quizState);
   return (
     <>
       <Navbar />
@@ -56,38 +55,3 @@ const FilmQuiz = () => {
 };
 
 export default FilmQuiz;
-
-// const navigate = useNavigate();
-// const { quizState, dispatch } = useContext(QuizContext);
-// const [gadgetData, setGadgetData] = useState([]);
-// const [quizQuestion, setQuizQuestion] = useState(0);
-// const [answers, setAnswers] = useState([]);
-// console.log(quizState);
-// const getFilmQuizData = async () => {
-//   const getData = await fetch(
-//     "https://opentdb.com/api.php?amount=6&category=11&difficulty=medium&type=multiple"
-//   );
-//   if (getData.status === 200) {
-//     const convertedJSON = await getData.json();
-//     const newArr = await convertedJSON.results.map((item) => {
-//       return {
-//         ...item,
-//         options: [...item.incorrect_answers, item.correct_answer],
-//       };
-//     });
-//     dispatch({ type: "addFilmQuizData", payload: { value: newArr } });
-//   }
-// };
-// useEffect(() => {
-//   getFilmQuizData();
-// }, []);
-// const nextQuestion = (item) => {
-//   setQuizQuestion((prev) => prev + 1);
-//   setAnswers((prev) => [...prev, item]);
-// };
-// useEffect(() => {
-//   dispatch({ type: "filmQuizAnswers", payload: { value: answers } });
-//   if (quizQuestion === 5) {
-//     navigate("/results");
-//   }
-// }, [quizQuestion]);

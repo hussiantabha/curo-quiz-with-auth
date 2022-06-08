@@ -4,7 +4,6 @@ import { QuizContext } from "../reducers/quizReducer";
 const DisplayResults = ({ data }) => {
   const { quizState, dispatch } = useContext(QuizContext);
   const filtered = data.filter((item) => item._id <= 5);
-  console.log(filtered);
   return (
     <>
       <section className="results-container">

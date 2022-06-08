@@ -8,7 +8,6 @@ import { QuizContext } from "../reducers/quizReducer";
 const Login = () => {
   let location = useLocation();
   let navigate = useNavigate();
-  console.log(location);
   const [loginInput, setLoginInput] = useState({ email: "", password: "" });
   const { quizState, dispatch } = useContext(QuizContext);
   const loginFunc = async () => {
@@ -53,7 +52,6 @@ const Login = () => {
           password: "test",
         }),
       });
-      console.log(postData);
       if (postData.status === 200) {
         const convertedJSON = await postData.json();
         sessionStorage.setItem("token", convertedJSON.encodedToken);

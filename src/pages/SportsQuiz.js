@@ -19,7 +19,6 @@ const SportsQuiz = () => {
       navigate("/results", { state: location });
     }
   }, [quizQuestion]);
-  console.log(quizState);
   return (
     <>
       <Navbar />

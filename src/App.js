@@ -7,7 +7,6 @@ import { SocialIcon } from "react-social-icons";
 function App() {
   const location = useLocation();
   const { quizState } = useContext(QuizContext);
-  console.log(quizState);
   return (
     <>
       <Navbar />
